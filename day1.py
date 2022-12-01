@@ -9,8 +9,8 @@ def fill_bags():
         if i == "":
             bags.append(cur)
             cur = 0
-            continue
-        cur += int(i)
+        else:
+            cur += int(i)
     return bags
 
 
