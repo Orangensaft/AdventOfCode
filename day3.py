@@ -43,6 +43,7 @@ def part1():
         total += get_bag_prio(bag)
     print(total)
 
+
 def part2():
     bags = read_input(2022, 3).strip().split("\n")
     groups = []
