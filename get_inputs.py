@@ -27,7 +27,7 @@ def save(year, day, target):
 def save_all(force=False):
     for year in range(2015, 2023):
         for day in range(1, 26):
-            p = pathlib.Path(f"inputs\\{year}\\{day}")
+            p = pathlib.Path(f"inputs")/str(year)/str(day)
             p.parent.mkdir(
                 parents=True, exist_ok=True
             )  # make sure that parent dir exists
