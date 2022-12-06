@@ -1,23 +1,35 @@
 from utils import read_input
 
 
-class MarkerChecker:
-    def __init__(self):
+class RingBuffer:
+    def __init__(self, size):
         self.content = []
+        self.size = size
 
-    def push(self, char: str):
-        if len(self.content) < 4:
-            self.content.append(char)
+    def push(self, item: object):
+        if len(self.content) < self.size:
+            self.content.append(item)
         else:
             self.content.pop(0)
-            self.content.append(char)
+            self.content.append(item)
+
+    def get_content(self):
+        return self.content
+
+
+class MarkerChecker:
+    def __init__(self, buffersize=4):
+        self.buffer = RingBuffer(buffersize)
+
+    def push(self, char: str):
+        self.buffer.push(char)
         return self.has_no_double()
 
     def has_no_double(self):
-        return len(set(self.content)) == 4
+        return len(set(self.buffer.get_content())) == self.buffer.size
 
     def get_marker(self):
-        return "".join(self.content)
+        return "".join(self.buffer.get_content())
 
     def __str__(self):
         return self.get_marker()
@@ -26,8 +38,8 @@ class MarkerChecker:
         return f"<Marker {self} - Is Marker: {self.has_no_double()}"
 
 
-def get_marker(signal: str):
-    m = MarkerChecker()
+def get_marker(signal: str, marker_size: int):
+    m = MarkerChecker(marker_size)
     for i, c in enumerate(signal):
         if m.push(c):
             return i + 1  # because of zero indexing
@@ -36,8 +48,14 @@ def get_marker(signal: str):
 
 def part1():
     signal = read_input(2022, 6).strip()
-    print(get_marker(signal))
+    print(get_marker(signal, 4))
+
+
+def part2():
+    signal = read_input(2022, 6).strip()
+    print(get_marker(signal, 14))
 
 
 if __name__ == "__main__":
     part1()
+    part2()
