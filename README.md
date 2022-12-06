@@ -1,5 +1,5 @@
-# aoc2022
-Quick and dirty python implementation for Advent of Code 2022.
+# Advent of Code
+Mostly quick and dirty python implementations for Advent of Code.
 
 **Scripts**
 
