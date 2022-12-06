@@ -1,4 +1,5 @@
 from utils import read_input
+from utils.puzzle import Puzzle
 
 
 class RingBuffer:
@@ -46,16 +47,12 @@ def get_marker(signal: str, marker_size: int):
     return -1
 
 
-def part1():
-    signal = read_input(2022, 6).strip()
-    print(get_marker(signal, 4))
+class Day6(Puzzle):
+    YEAR = 2022
+    DAY = 6
 
+    def part1(self):
+        return get_marker(self.input, 4)
 
-def part2():
-    signal = read_input(2022, 6).strip()
-    print(get_marker(signal, 14))
-
-
-if __name__ == "__main__":
-    part1()
-    part2()
+    def part2(self):
+        return get_marker(self.input, 14)

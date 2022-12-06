@@ -1,27 +1,27 @@
-from utils import read_input
+from utils.puzzle import Puzzle
 
 
-def fill_bags():
-    inputs = read_input(2022, 1).split("\n")
-    bags = []
-    cur = 0
-    for i in inputs:
-        if i == "":
-            bags.append(cur)
-            cur = 0
-        else:
-            cur += int(i)
-    return bags
+class Day1(Puzzle):
+    YEAR = 2022
+    DAY = 1
 
+    def fill_bags(self):
+        bags = []
+        cur = 0
+        for i in self.input.split("\n"):
+            if i == "":
+                bags.append(cur)
+                cur = 0
+            else:
+                cur += int(i)
+        return bags
 
-def part1():
-    return max(fill_bags())
+    def part1(self):
+        return max(self.fill_bags())
 
-
-def part2():
-    return sum(sorted(fill_bags())[::-1][0:3])
+    def part2(self):
+        return sum(sorted(self.fill_bags())[::-1][0:3])
 
 
 if __name__ == "__main__":
-    print(part1())
-    print(part2())
+    Day1().run()

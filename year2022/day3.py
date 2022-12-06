@@ -2,7 +2,7 @@ import string
 from collections import Counter
 from copy import deepcopy
 
-from utils import read_input
+from utils.puzzle import Puzzle
 
 ITEMS = string.ascii_lowercase + string.ascii_uppercase
 
@@ -36,34 +36,32 @@ def find_item(group):
     return c.most_common(1)[0][0]
 
 
-def part1():
-    bags = read_input(2022, 3).strip().split("\n")
-    total = 0
-    for bag in bags:
-        total += get_bag_prio(bag)
-    print(total)
+class Day3(Puzzle):
+    YEAR = 2022
+    DAY = 3
 
+    def part1(self):
+        bags = self.input.split("\n")
+        total = 0
+        for bag in bags:
+            total += get_bag_prio(bag)
+        return total
 
-def part2():
-    bags = read_input(2022, 3).strip().split("\n")
-    groups = []
-    group = []
-    for bag in bags:
-        group.append("".join(set(bag)))
-        if len(group) == 3:
-            groups.append(deepcopy(group))
-            group = []
+    def part2(self):
+        bags = self.input.split("\n")
+        groups = []
+        group = []
+        for bag in bags:
+            group.append("".join(set(bag)))
+            if len(group) == 3:
+                groups.append(deepcopy(group))
+                group = []
 
-    total = 0
+        total = 0
 
-    for group in groups:
-        item = find_item(group)
-        prio = item_to_prio(item)
-        total += prio
+        for group in groups:
+            item = find_item(group)
+            prio = item_to_prio(item)
+            total += prio
 
-    print(total)
-
-
-if __name__ == "__main__":
-    part1()
-    part2()
+        return total

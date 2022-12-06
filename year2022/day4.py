@@ -1,4 +1,5 @@
 from utils import read_input
+from utils.puzzle import Puzzle
 
 
 def fully_contains(range1, range2):
@@ -34,20 +35,18 @@ def parse_line(line):
     return range1, range2
 
 
-def part1():
-    inp = read_input(2022, 4).strip().split("\n")
-    ranges = [parse_line(l) for l in inp]
-    doubles = [i for i in ranges if fully_contains(i[0], i[1])]
-    print(len(doubles))
+class Day4(Puzzle):
+    YEAR = 2022
+    DAY = 4
 
+    def part1(self):
+        inp = self.input.split("\n")
+        ranges = [parse_line(l) for l in inp]
+        doubles = [i for i in ranges if fully_contains(i[0], i[1])]
+        return len(doubles)
 
-def part2():
-    inp = read_input(2022, 4).strip().split("\n")
-    ranges = [parse_line(l) for l in inp]
-    partly = [i for i in ranges if overlaps_partly(i[0], i[1])]
-    print(len(partly))
-
-
-if __name__ == "__main__":
-    part1()
-    part2()
+    def part2(self):
+        inp = self.input.split("\n")
+        ranges = [parse_line(l) for l in inp]
+        partly = [i for i in ranges if overlaps_partly(i[0], i[1])]
+        return len(partly)

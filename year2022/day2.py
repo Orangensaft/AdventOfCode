@@ -1,4 +1,4 @@
-from utils import read_input
+from utils.puzzle import Puzzle
 
 WINNING = {"A": "Y", "B": "Z", "C": "X"}
 
@@ -52,20 +52,16 @@ def part_2_points(opponent, target):
         return get_hand_score(me) + 6
 
 
-def part1():
-    inputs = read_input(2022, 2).strip().split("\n")
-    print(follow_guide(inputs))
+class Day2(Puzzle):
+    YEAR = 2022
+    DAY = 2
 
+    def part1(self):
+        return follow_guide(self.input.split("\n"))
 
-def part2():
-    total = 0
-    inputs = read_input(2022, 2).strip().split("\n")
-    for inp in inputs:
-        opponent, target = inp.split(" ")
-        total += part_2_points(opponent, target)
-    print(total)
-
-
-if __name__ == "__main__":
-    part1()
-    part2()
+    def part2(self):
+        total = 0
+        for inp in self.input.split("\n"):
+            opponent, target = inp.split(" ")
+            total += part_2_points(opponent, target)
+        return total

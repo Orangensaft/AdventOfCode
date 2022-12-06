@@ -1,4 +1,5 @@
 from utils import read_input
+from utils.puzzle import Puzzle
 
 
 class CrateMover9000:
@@ -25,6 +26,7 @@ class CrateMover9000:
     def execute_commands(self):
         for count, from_id, to_idx in self.commands:
             self.move(count, from_id, to_idx)
+        return self
 
     def move(self, count: int, from_idx: int, to_idx: int):
         for i in range(count):
@@ -58,13 +60,15 @@ class CrateMover9001(CrateMover9000):
     def execute_commands(self):
         for count, from_id, to_idx in self.commands:
             self.move(count, from_id, to_idx)
+        return self
 
 
-if __name__ == "__main__":
-    part1 = CrateMover9000()
-    part1.execute_commands()
-    print(part1.get_top_crates())
+class Day5(Puzzle):
+    YEAR = 2022
+    DAY = 5
 
-    part2 = CrateMover9001()
-    part2.execute_commands()
-    print(part2.get_top_crates())
+    def part1(self):
+        return CrateMover9000().execute_commands().get_top_crates()
+
+    def part2(self):
+        return CrateMover9001().execute_commands().get_top_crates()
