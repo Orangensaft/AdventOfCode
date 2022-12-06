@@ -8,6 +8,11 @@ class Puzzle(ABC):
     DAY = -1
 
     def __init__(self):
+        if -1 in [self.DAY, self.YEAR]:
+            self.part1 = lambda: "DAY/YEAR missing"
+            self.part2 = lambda: "DAY/YEAR missing"
+            self.input = ""
+            return
         self.input = read_input(self.YEAR, self.DAY).strip()
 
     def __measure(self, f: callable):
