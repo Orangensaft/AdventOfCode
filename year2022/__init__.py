@@ -6,6 +6,7 @@ from year2022.day4 import Day4
 from year2022.day5 import Day5
 from year2022.day6 import Day6
 from year2022.day7 import Day7
+from year2022.day8 import Day8
 
 
 def run():
