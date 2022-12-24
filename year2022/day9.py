@@ -28,26 +28,38 @@ class Rope:
             self.move(direction)
 
     def move(self, direction: str):
-        old_pos = self.parts[0]  # head was here
         self.parts[0] = self.get_new_tip_pos(direction)  # will move there
 
         for i in range(1, len(self.parts)):
             # check dist with old pos
             cur = self.parts[i]
             prev = self.parts[i - 1]
-            distance = self.get_distance(prev[0], prev[1], cur[0], cur[1])
-            if distance > 1:
-                # part needs to move to the orig pos of the prev position
-                # TODO: find out how the parts should be moving
-                self.parts[i] = old_pos
-                old_pos = cur  # update old_pos to the original pos of cur elem
-            else:
-                # distance is not too big, we can stop here
-                break
+            dx = prev[0] - cur[0]
+            dy = prev[1] - cur[1]
+            if abs(dx) > 1 or abs(dy) > 1:
+                # move the knot
+                x_sign = -1 if dx < 0 else 1
+                y_sign = -1 if dy < 0 else 1
+
+                if dx == 0:  # only y
+                    # move cur one step in y direction
+                    cur = cur[0], cur[1] + y_sign
+                    self.parts[i] = cur
+
+                elif dy == 0:
+                    # move cur one step in x direction
+                    cur = cur[0] + x_sign, cur[1]
+                    self.parts[i] = cur
+
+                else:
+                    # dx and dy != 0 --> moved diag
+                    cur = cur[0] + x_sign, cur[1] + y_sign
+                    self.parts[i] = cur
+
         self.tail_positions.add(self.parts[-1])  # track position of tail
 
     def plot(self):
-        all_pos = self.parts
+        all_pos = self.tail_positions
         x, y = zip(*all_pos)
         plt.scatter(x, y, marker=",")
         plt.show()
