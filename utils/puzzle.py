@@ -24,8 +24,8 @@ class Puzzle(ABC):
     def run(self):
 
         p1, ms1 = self.__measure(self.part1)
-        p2, ms2 = self.__measure(self.part2)
         print(f"{self.YEAR}.{self.DAY}.1:\t{p1}\t\t\t\tin {ms1:.2f}ms")
+        p2, ms2 = self.__measure(self.part2)
         print(f"{self.YEAR}.{self.DAY}.2:\t{p2}\t\t\t\tin {ms2:.2f}ms")
 
     def part1(self):

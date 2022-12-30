@@ -9,6 +9,7 @@ from year2022.day7 import Day7
 from year2022.day8 import Day8
 from year2022.day9 import Day9
 from year2022.day10 import Day10
+from year2022.day11 import Day11
 
 
 def run():
