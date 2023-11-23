@@ -75,7 +75,7 @@ class Day10(Puzzle):
         return CRT().commands(self.input.split("\n")).get_sum_strengths()
 
     def part2(self):
-        print("------------------")
-        print(CRT().commands(self.input.split("\n")).get_screen())
-        print("------------------")
+        #print("------------------")
+        #print(CRT().commands(self.input.split("\n")).get_screen())
+        #print("------------------")
         return "RZHFGJCB"
