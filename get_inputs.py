@@ -3,6 +3,7 @@ import pathlib
 import sys
 import os
 
+
 # grab all days
 def grab(year, day):
     token = os.environ.get("AOC_TOKEN", "")

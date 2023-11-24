@@ -22,7 +22,6 @@ class Puzzle(ABC):
         return r, total
 
     def run(self):
-
         p1, ms1 = self.__measure(self.part1)
         print(f"{self.YEAR}.{self.DAY}.1:\t{p1}\t\t\t\tin {ms1:.2f}ms")
         p2, ms2 = self.__measure(self.part2)
