@@ -1,5 +1,6 @@
 import abc
 import argparse
+import datetime
 from importlib import import_module
 from utils.puzzle import Puzzle
 
@@ -34,7 +35,13 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-y", "--year", type=int)
     parser.add_argument("-d", "--day", type=int)
+    parser.add_argument("-t", "--today", action='store_true')
     args = parser.parse_args()
+    if args.today:
+        # only run today
+        today = datetime.date.today()
+        args.year = today.year
+        args.day = today.day
     if args.day is not None and args.year is not None:
         # Run given year+day
         print(f"Running {args.year}.{args.day}")
