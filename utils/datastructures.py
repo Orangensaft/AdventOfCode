@@ -1,6 +1,4 @@
 class Field2D:
-    TOPLEFT = 0
-    BOTLEFT = 1
 
     def __init__(self, size_x, size_y, default=None):
         self.size_x = size_x
