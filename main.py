@@ -7,11 +7,11 @@ def run(year: int, day: int):
     day_module = import_module(f"year{year}.day{day}")
     for content in dir(day_module):
         cls = getattr(day_module, content)
-        if cls is Puzzle:  # Ignore the puzzle class import
+        if type(cls) is Puzzle:  # Ignore the puzzle class import
             continue
         # As we are using a subclass of an abstract class, class will be abc.ABCMeta
         # and issubclass(cls, Puzzle) will be false
-        if cls is abc.ABCMeta and cls.__base__ == Puzzle:
+        if type(cls) is abc.ABCMeta and cls.__base__ == Puzzle:
             cls().run()
 
 
