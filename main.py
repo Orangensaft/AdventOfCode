@@ -1,4 +1,5 @@
 import abc
+import argparse
 from importlib import import_module
 from utils.puzzle import Puzzle
 
@@ -15,8 +16,12 @@ def run(year: int, day: int):
             cls().run()
 
 
-def run_all():
-    for year in range(2015, 2024):
+def run_all(year_to_run: int | None = None):
+    if year_to_run is None:
+        year_to_run = range(2015, 2024)
+    else:
+        year_to_run = [year_to_run]
+    for year in year_to_run:
         print(f"----Year {year}----")
         for day in range(1, 26):
             try:
@@ -26,4 +31,20 @@ def run_all():
 
 
 if __name__ == "__main__":
-    run_all()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-y", "--year", type=int)
+    parser.add_argument("-d", "--day", type=int)
+    args = parser.parse_args()
+    if args.day is not None and args.year is not None:
+        # Run given year+day
+        print(f"Running {args.year}.{args.day}")
+        try:
+            run(args.year, args.day)
+        except ModuleNotFoundError:
+            print("Not implemented :(")
+    elif args.year is not None:
+        # Run given year
+        run_all(args.year)
+    else:
+        # Run everything
+        run_all()
