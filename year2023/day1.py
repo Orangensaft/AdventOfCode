@@ -1,18 +1,45 @@
 from utils.puzzle import Puzzle
 
 
-def replace_nums(s: str) -> str:
-    nums = ["!!!", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
-    replacements = []
-    for start in range(len(s)):
-        for end in range(start, len(s)+1):
-            cur = s[start:end]
-            if cur in nums:
-                replacements.append(cur)
-                break
-    for replacement in replacements:
-        s = s.replace(replacement, str(nums.index(replacement)), 1)
-    return s
+REPLACE_NUMBERS = {
+    "twone": "21",
+    "nineight": "98",
+    "oneight": "18",
+    "threeight": "38",
+    "fiveight": "58",
+    "sevenine": "79",
+    "eightwo": "82",
+    "eighthree": "83",
+    "one": "1",
+    "two": "2",
+    "three": "3",
+    "four": "4",
+    "five": "5",
+    "six": "6",
+    "seven": "7",
+    "eight": "8",
+    "nine": "9",
+}
+
+
+def replace_numbers(s: str) -> int:
+    for key, val in REPLACE_NUMBERS.items():
+        s = s.replace(key, val)
+    return get_calibration_number(s)
+
+
+def count_part_2(lines):
+    total = 0
+    for line in lines:
+        to_add = replace_numbers(line)
+        total += to_add
+    return total
+
+
+def get_calibration_number(line):
+    clean = [int(i) for i in line if i.isnumeric()]
+    to_add = 10 * clean[0] + clean[-1]
+    return to_add
 
 
 class Day1(Puzzle):
@@ -24,16 +51,9 @@ class Day1(Puzzle):
         total = 0
         for line in lines:
             clean = [int(i) for i in line if i.isnumeric()]
-            total += 10*clean[0] + clean[-1]
+            total += 10 * clean[0] + clean[-1]
         return total
 
     def part2(self):
         lines = self.input.split("\n")
-        total = 0
-        for line in lines:
-            clean_line = replace_nums(line)
-            clean = [int(i) for i in clean_line if i.isnumeric()]
-            to_add = 10*clean[0] + clean[-1]
-            total += to_add
-
-        return total
+        return count_part_2(lines)
