@@ -35,7 +35,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-y", "--year", type=int)
     parser.add_argument("-d", "--day", type=int)
-    parser.add_argument("-t", "--today", action='store_true')
+    parser.add_argument("-t", "--today", action="store_true")
     args = parser.parse_args()
     if args.today:
         # only run today
