@@ -7,6 +7,10 @@ class Field2D:
     def __get_idx(self, x, y):
         return y * self.size_x + x
 
+    def get_surrounding_items(self, x, y, diag=True):
+        coords = self.get_surrounding_coords(x, y, diag)
+        return [self[xi, yi] for (xi, yi) in coords]
+
     def get_surrounding_coords(self, x, y, diag=True):
         out = set()
         for _x in range(-1, 2):
