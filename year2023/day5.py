@@ -1,3 +1,4 @@
+import time
 from concurrent.futures import ThreadPoolExecutor
 from functools import lru_cache
 
@@ -79,6 +80,8 @@ class SeedMap:
 
     def get_lowest_for_seed_range(self, r: range):
         lowest = 999999999999999
+        start = time.time()
+        print(f"Processing {r.stop-r.start} items")
         with ThreadPoolExecutor(max_workers=8) as exe:
             results = list(exe.map(self.get_end_position, r))
         """
@@ -89,6 +92,10 @@ class SeedMap:
         
         return lowest
         """
+        time_taken = time.time()-start
+        speed = (r.stop-r.start)/time_taken  # items per s
+        print(f"Took {time_taken}s with a speed of {speed} items/s")
+
         return min(results)
 
     def get_lowest_part2_position(self):
