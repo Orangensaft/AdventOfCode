@@ -6,6 +6,27 @@ KK677 28
 KTJJT 220
 QQQJA 483""".split("\n")
 
+
+EXAMPLE_TWO = """2345A 1
+Q2KJJ 13
+Q2Q2Q 19
+T3T3J 17
+T3Q33 11
+2345J 3
+J345A 2
+32T3K 5
+T55J5 29
+KK677 7
+KTJJT 34
+QQQJA 31
+JJJJJ 37
+JAAAA 43
+AAAAJ 59
+AAAAA 61
+2AAAA 23
+2JJJJ 53
+JJJJ2 41""".split("\n")
+
 def test_get_card_points():
     assert get_card_points("1") == 1
     assert get_card_points("A") == 14
@@ -33,4 +54,11 @@ def test_sort_hands():
 
 def test_get_total_winnings():
     assert get_total_winnings(EXAMPLE) == 6440
+
+
+
+def test_rankit_two():
+    # example from reddit
+    # https://www.reddit.com/r/adventofcode/comments/18cr4xr/2023_day_7_better_example_input_not_a_spoiler/
+    assert get_total_winnings(EXAMPLE_TWO) == 6592
 
