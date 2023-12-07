@@ -1,4 +1,4 @@
-from year2023.day7 import get_card_points, get_hand_points, get_winning_hand, rank_hands, get_total_winnings, \
+from year2023.day7 import get_hand_points, rank_hands, get_total_winnings, \
     get_hand_points_joker, HIGH_CARD, FULL_HOUSE, THREE_OF_A_KIND, FIVE_OF_A_KIND, FOUR_OF_A_KIND
 
 EXAMPLE = """32T3K 765
@@ -28,10 +28,6 @@ AAAAA 61
 2JJJJ 53
 JJJJ2 41""".split("\n")
 
-def test_get_card_points():
-    assert get_card_points("1") == 1
-    assert get_card_points("A") == 14
-
 
 def test_get_hand_points():
     assert get_hand_points("12345") == 15
@@ -41,11 +37,6 @@ def test_get_hand_points():
     assert get_hand_points("11222") == 19
     assert get_hand_points("41444") == 20
     assert get_hand_points("55555") == 21
-
-
-def test_get_winning_hand():
-    assert get_winning_hand("33332", "2AAAA") == 1
-    assert get_winning_hand("77788", "77888") == 2
 
 
 def test_sort_hands():
