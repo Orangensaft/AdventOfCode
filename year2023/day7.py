@@ -10,18 +10,18 @@ def get_hand_points(hand: str):
     for i in hand:
         counts.append(hand.count(i))
     if 5 in counts:
-        return 20  # 5 of a kind
+        return 21  # 5 of a kind
     if 4 in counts:
-        return 19  # 4 of a kind
+        return 20  # 4 of a kind
     if 3 in counts and 2 in counts:
-        return 18  # Full house
+        return 19  # Full house
     if 3 in counts:  # but not 2
-        return 17  # three of a kind
+        return 18  # three of a kind
     if counts.count(2) == 4:
-        return 16  # two pairs
+        return 17  # two pairs
     if 2 in counts:
-        return 15  # on pair
-    return max(get_card_points(c) for c in hand)
+        return 16  # on pair
+    return 15
 
 
 def get_winning_hand(hand1: str, hand2: str):

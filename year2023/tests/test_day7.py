@@ -33,13 +33,13 @@ def test_get_card_points():
 
 
 def test_get_hand_points():
-    assert get_hand_points("12345") == 5
-    assert get_hand_points("12344") == 15
-    assert get_hand_points("12233") == 16
-    assert get_hand_points("12333") == 17
-    assert get_hand_points("11222") == 18
-    assert get_hand_points("41444") == 19
-    assert get_hand_points("55555") == 20
+    assert get_hand_points("12345") == 15
+    assert get_hand_points("12344") == 16
+    assert get_hand_points("12233") == 17
+    assert get_hand_points("12333") == 18
+    assert get_hand_points("11222") == 19
+    assert get_hand_points("41444") == 20
+    assert get_hand_points("55555") == 21
 
 
 def test_get_winning_hand():
