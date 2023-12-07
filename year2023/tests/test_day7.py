@@ -1,4 +1,5 @@
-from year2023.day7 import get_card_points, get_hand_points, get_winning_hand, rank_hands, get_total_winnings
+from year2023.day7 import get_card_points, get_hand_points, get_winning_hand, rank_hands, get_total_winnings, \
+    get_hand_points_joker, HIGH_CARD, FULL_HOUSE, THREE_OF_A_KIND, FIVE_OF_A_KIND, FOUR_OF_A_KIND
 
 EXAMPLE = """32T3K 765
 T55J5 684
@@ -62,3 +63,20 @@ def test_rankit_two():
     # https://www.reddit.com/r/adventofcode/comments/18cr4xr/2023_day_7_better_example_input_not_a_spoiler/
     assert get_total_winnings(EXAMPLE_TWO) == 6592
 
+
+def test_hand_with_jokers():
+    assert get_hand_points_joker("12345") == HIGH_CARD
+    assert get_hand_points_joker("2233J") == FULL_HOUSE
+    assert get_hand_points_joker("AJJ94") == THREE_OF_A_KIND
+    assert get_hand_points_joker("AAJ55") == FULL_HOUSE
+    assert get_hand_points_joker("JJJJ1") == FIVE_OF_A_KIND
+    assert get_hand_points_joker("JJJ22") == FIVE_OF_A_KIND
+    assert get_hand_points_joker("JJ222") == FIVE_OF_A_KIND
+    assert get_hand_points_joker("J2222") == FIVE_OF_A_KIND
+    assert get_hand_points_joker("T55J5") == FOUR_OF_A_KIND
+    assert get_hand_points_joker("KTJJT") == FOUR_OF_A_KIND
+    assert get_hand_points_joker("QQQJA") == FOUR_OF_A_KIND
+
+
+def test_get_winnings_part2_example():
+    assert get_total_winnings(EXAMPLE, part2=True) == 5905
