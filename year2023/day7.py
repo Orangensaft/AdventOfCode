@@ -53,30 +53,23 @@ def sortable_to_hand(hand: str) -> str:
 
 
 def rank_hands(hands_with_bets: [str]) -> [str]:
-    # sort by points
+    hands_with_bets = [hand_to_sortable(i) for i in hands_with_bets]
+    # Sort the hands alphabetically.
+    # So higher card comes first
+    hands_with_bets = sorted(hands_with_bets)[::-1]
+
+    # second, sort by points
     hands_with_points = []
     for hand in hands_with_bets:
         h, bet = hand.split(" ")
         hands_with_points.append((h, get_hand_points(h), bet))
 
     # now sort
-    sorted_by_points = sorted(hands_with_points, key=lambda x:-x[1])
+    completely_sorted = sorted(hands_with_points, key=lambda x:-x[1])
 
-    # afterwards we sort by hand if the points are the same
-    for start in range(len(sorted_by_points)-1):
-        # bubble sort one on one
-        for i in range(start, len(sorted_by_points)-1):
-            cur = sorted_by_points[i]
-            n = sorted_by_points[i+1]
-            if cur[1] == n[1]:
-                better_hand = get_winning_hand(cur[0], n[0])
-                if better_hand == 2:
-                    # next hand is better, switch places
-                    sorted_by_points[i], sorted_by_points[i+1] = sorted_by_points[i+1], sorted_by_points[i]
-
-    sorted_by_points = sorted_by_points[::-1]  # reverse order because ranks
-    return [i[0]+" "+str(i[2]) for i in sorted_by_points]
-
+    ret = [sortable_to_hand(i[0])+" "+str(i[2]) for i in completely_sorted][::-1]
+    # Use reversed list, so we have the lowest first
+    return ret
 
 def get_total_winnings(hands_with_bets: [str]) -> int:
     ranked = rank_hands(hands_with_bets)
