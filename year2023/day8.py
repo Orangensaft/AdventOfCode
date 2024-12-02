@@ -1,5 +1,6 @@
 from utils.puzzle import Puzzle
 from math import lcm
+
 """
 AAA = (BBB, CCC)
 BBB = (DDD, EEE)
@@ -14,7 +15,9 @@ ZZZ = (ZZZ, ZZZ)
 def read_nodes(node_lines: [str]) -> dict:
     out = {}
     for line in node_lines:
-        node, others = line.replace(" ", "").replace("(", "").replace(")", "").split("=")
+        node, others = (
+            line.replace(" ", "").replace("(", "").replace(")", "").split("=")
+        )
         others = others.split(",")
         out[node] = others
     return out

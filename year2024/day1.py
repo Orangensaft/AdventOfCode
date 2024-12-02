@@ -38,7 +38,7 @@ class Day1(Puzzle):
         # get the puzzle input and split into two lists
         list1, list2 = [], []
         for line in puzzle_input.split("\n"):
-            a,b  = line.split("   ")
+            a, b = line.split("   ")
             list1.append(int(a))
             list2.append(int(b))
         return list1, list2

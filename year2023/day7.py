@@ -34,7 +34,7 @@ def get_hand_points_joker(hand: str):
     hand = hand.replace("0", "J")
     counts = []
     jokers = hand.count("J")
-    hand = hand.replace("J","")
+    hand = hand.replace("J", "")
     for i in hand:
         counts.append(hand.count(i))
     if 5 in counts:
@@ -84,14 +84,25 @@ def get_hand_points_joker(hand: str):
 def hand_to_sortable(hand: str, part2=False) -> str:
     # Replaces the non numbers by chars in increasing order, thus allowing string sorting
     j_replace = "0" if part2 else "W"
-    return hand.replace("A", "Z").replace("K", "Y").replace("Q", "X").replace("J", j_replace).replace("T","V")
+    return (
+        hand.replace("A", "Z")
+        .replace("K", "Y")
+        .replace("Q", "X")
+        .replace("J", j_replace)
+        .replace("T", "V")
+    )
 
 
 def sortable_to_hand(hand: str, part2=False) -> str:
     # undoing the replacement, for easier debugging
     j_replace = "0" if part2 else "W"
-    return hand.replace("Z", "A").replace("Y", "K").replace("X", "Q").replace(j_replace, "J").replace("V","T")
-
+    return (
+        hand.replace("Z", "A")
+        .replace("Y", "K")
+        .replace("X", "Q")
+        .replace(j_replace, "J")
+        .replace("V", "T")
+    )
 
 
 def rank_hands(hands_with_bets: [str], part2=False) -> [str]:
@@ -109,10 +120,12 @@ def rank_hands(hands_with_bets: [str], part2=False) -> [str]:
         hand_points = get_hand_points(h) if not part2 else get_hand_points_joker(h)
         hands_with_points.append((h, hand_points, bet))
     # sorting
-    completely_sorted = sorted(hands_with_points, key=lambda x:-x[1])
+    completely_sorted = sorted(hands_with_points, key=lambda x: -x[1])
 
     # make them look nice again and use reversed list, so we have the lowest first
-    ret = [sortable_to_hand(i[0], part2)+" "+str(i[2]) for i in completely_sorted][::-1]
+    ret = [sortable_to_hand(i[0], part2) + " " + str(i[2]) for i in completely_sorted][
+        ::-1
+    ]
     return ret
 
 
@@ -122,7 +135,7 @@ def get_total_winnings(hands_with_bets: [str], part2=False) -> int:
     total = 0
     for rank, hand_with_bet in enumerate(ranked):
         hand, bet = hand_with_bet.split(" ")
-        total += (rank+1) * int(bet)
+        total += (rank + 1) * int(bet)
     return total
 
 

@@ -2,9 +2,7 @@ from year2022.day10 import CRT
 
 EXAMPLE_SMALL_PART_1 = """noop
 addx 3
-addx -5""".split(
-    "\n"
-)
+addx -5""".split("\n")
 
 EXAMPLE_BIG_PART_1 = """addx 15
 addx -11
@@ -152,9 +150,7 @@ addx -11
 noop
 noop
 noop
-""".split(
-    "\n"
-)
+""".split("\n")
 
 
 def test_init_value():

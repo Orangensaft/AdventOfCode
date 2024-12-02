@@ -7,10 +7,12 @@ TEST_INPUT = """3   4
 3   9
 3   3"""
 
+
 def test_get_lists():
     d = Day1()
     list1, list2 = d.get_lists(TEST_INPUT)
     assert len(list1) == len(list2) == 6
+
 
 def test_sort_lists():
     d = Day1()

@@ -33,5 +33,4 @@ class Day2(Puzzle):
             area += Present.from_line(line).get_wrapping_area()
         return area
 
-    def part2(self):
-        ...
+    def part2(self): ...

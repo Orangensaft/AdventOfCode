@@ -96,9 +96,9 @@ def test_get_seed_ranges():
     assert len(ranges) == 2
     range1, range2 = ranges
     assert range1.start == 79
-    assert range1.stop == 79+14
+    assert range1.stop == 79 + 14
     assert range2.start == 55
-    assert range2.stop == 55+13
+    assert range2.stop == 55 + 13
 
 
 def test_lowest_part_2():

@@ -26,9 +26,9 @@ class SeedMap:
             destination_range_start, source_range_start, range_length = [
                 int(i) for i in line.split(" ")
             ]
-            out[
-                range(source_range_start, source_range_start + range_length)
-            ] = destination_range_start
+            out[range(source_range_start, source_range_start + range_length)] = (
+                destination_range_start
+            )
         return out
 
     def process_maps(self, maps: [str]):
@@ -55,7 +55,6 @@ class SeedMap:
             cur = self.get_location(cur, mapping)
         return cur
 
-
     def get_all_end_positions(self):
         out = []
         for seed in self.seeds:
@@ -67,15 +66,15 @@ class SeedMap:
 
     def create_seed_ranges(self):
         out = []
-        for i in range(len(self.seeds)//2):
-            start, count = self.seeds[i*2], self.seeds[(i*2)+1]
-            out.append(range(start, start+count))
+        for i in range(len(self.seeds) // 2):
+            start, count = self.seeds[i * 2], self.seeds[(i * 2) + 1]
+            out.append(range(start, start + count))
         return out
 
     def get_total_range_size(self):
         total = 0
         for r in self.seed_ranges:
-            total += (r.stop - r.start)
+            total += r.stop - r.start
         return total
 
     def get_lowest_for_seed_range(self, r: range):
@@ -92,8 +91,8 @@ class SeedMap:
         
         return lowest
         """
-        time_taken = time.time()-start
-        speed = (r.stop-r.start)/time_taken  # items per s
+        time_taken = time.time() - start
+        speed = (r.stop - r.start) / time_taken  # items per s
         print(f"Took {time_taken}s with a speed of {speed} items/s")
 
         return min(results)
@@ -110,6 +109,7 @@ class SeedMap:
             if l < lowest:
                 lowest = l
         return lowest
+
 
 class AintMuchButHonestWork(Puzzle):
     DAY = 5

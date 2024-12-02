@@ -1,5 +1,14 @@
-from year2023.day7 import get_hand_points, rank_hands, get_total_winnings, \
-    get_hand_points_joker, HIGH_CARD, FULL_HOUSE, THREE_OF_A_KIND, FIVE_OF_A_KIND, FOUR_OF_A_KIND
+from year2023.day7 import (
+    get_hand_points,
+    rank_hands,
+    get_total_winnings,
+    get_hand_points_joker,
+    HIGH_CARD,
+    FULL_HOUSE,
+    THREE_OF_A_KIND,
+    FIVE_OF_A_KIND,
+    FOUR_OF_A_KIND,
+)
 
 EXAMPLE = """32T3K 765
 T55J5 684
@@ -41,12 +50,17 @@ def test_get_hand_points():
 
 def test_sort_hands():
     sorted_hands = rank_hands(EXAMPLE)
-    assert sorted_hands == ["32T3K 765", "KTJJT 220", "KK677 28", "T55J5 684", "QQQJA 483"]
+    assert sorted_hands == [
+        "32T3K 765",
+        "KTJJT 220",
+        "KK677 28",
+        "T55J5 684",
+        "QQQJA 483",
+    ]
 
 
 def test_get_total_winnings():
     assert get_total_winnings(EXAMPLE) == 6440
-
 
 
 def test_rankit_two():
